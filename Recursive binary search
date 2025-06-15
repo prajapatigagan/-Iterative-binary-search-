@@ -1,0 +1,62 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int binarySearch(vector<int>& nums,int start,int end, int target)
+ {
+  if(start>end)
+  {
+    return -1;
+  }
+  int mid=(start+end)/2;
+  if(nums[mid]==target)
+  {
+    return mid;
+  }
+  else if(target>nums[mid])
+  {
+    return binarySearch(nums,mid+1,end,target);
+  }
+  return binarySearch(nums,start,mid-1,target);
+ }
+ int search(vector<int>& nums, int target)
+ {
+  return binarySearch(nums,0,nums.size()-1,target);
+ }
+ int main()
+ {
+   vector<int> a={2,4,6,8,10,12,17,19,26,36,48,58,68,89};
+   int target=12;
+   int ans=search(a,target);
+   cout<<ans;
+   return 0;
+ }
+
+
+
+/Naive approach...
+#include<iostream>
+#include<vector>
+using namespace std;
+int lowerbound(vector<int>& nums,int n, int target)
+{
+  // int n=nums.size();
+  for(int i=0; i<n; i++)
+  {
+    if(nums[i]>=target)
+  {
+    return i;
+  }
+}
+  return n;
+
+}
+int main()
+{
+  vector<int> nums={2,4,6,8,10,12,17,19,26,36,48,58,68,89}; 
+  int n=13;
+  int target=67;
+  int ans=lowerbound(nums,n,target);
+  cout<<ans;
+  return 0;
+}
